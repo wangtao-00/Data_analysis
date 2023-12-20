@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-plt.rcParams["font.sans-serif"]=["SimHei"] #设置字体
-plt.rcParams["axes.unicode_minus"]=False #该语句解决图像中的“-”负号的乱码问题
 
 def app():
     # 饼状图和直方图页面的内容
@@ -18,13 +16,13 @@ def app():
         # 绘制饼图
         fig1, ax1 = plt.subplots()
         ax1.pie(data['死亡人数'], labels=data['月份'], autopct='%1.2f%%')
-        plt.title('1974年英国每个月死于支气管炎、肺气肿和哮喘病的人数分布（饼图）')
+        plt.title('The distribution of monthly deaths from bronchitis, emphysema, and asthma in the UK in 1974 (pie chart)')
         st.pyplot(fig1)
 
         # 绘制条形图
         fig2, ax2 = plt.subplots()
         ax2.bar(data['月份'], data['死亡人数'])
-        plt.title('1974年英国每个月死于支气管炎、肺气肿和哮喘病的人数分布（条形图）')
-        plt.xlabel('月份')
-        plt.ylabel('死亡人数/人')
+        plt.title('Distribution of monthly deaths from bronchitis, emphysema, and asthma in the UK in 1974 (bar chart)')
+        plt.xlabel('Month')
+        plt.ylabel('Number of deaths/person ')
         st.pyplot(fig2)
