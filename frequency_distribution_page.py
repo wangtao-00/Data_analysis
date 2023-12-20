@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-plt.rcParams["font.sans-serif"]=["SimHei"] #设置字体
-plt.rcParams["axes.unicode_minus"]=False #该语句解决图像中的“-”负号的乱码问题
+plt.rcParams['font.sans-serif'] = ['WenQuanYi Zen Hei', 'SimHei']  # 添加更多字体选项
+plt.rcParams['axes.unicode_minus'] = False
 
 def app():
     # 频率分布图页面的内容
