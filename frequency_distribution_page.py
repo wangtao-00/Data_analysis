@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 def app():
     # 频率分布图页面的内容
     st.title("频率分布图")
-     with st.container():
+    with st.container():
         st.write("""
         定量数据的分布分析，一般按照以下步骤进行。\n
         - 求极差
