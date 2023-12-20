@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-plt.rcParams['font.sans-serif'] = ['WenQuanYi Zen Hei', 'SimHei']  # 添加更多字体选项
+
 plt.rcParams['axes.unicode_minus'] = False
 
 def app():
