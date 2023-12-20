@@ -6,6 +6,16 @@ import matplotlib.pyplot as plt
 def app():
     # 频率分布图页面的内容
     st.title("频率分布图")
+     with st.container():
+        st.write("""
+        定量数据的分布分析，一般按照以下步骤进行。\n
+        - 求极差
+        - 决定组距与组数
+        - 决定分点
+        - 列出频率分布表
+        - 绘制频率分布直方图
+        """)
+    
     uploaded_file = st.file_uploader("选择文件（lh .csv）", type=["csv"])
     if uploaded_file is not None:
         # 读取数据
