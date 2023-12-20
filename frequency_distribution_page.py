@@ -3,8 +3,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-plt.rcParams['axes.unicode_minus'] = False
-
 def app():
     # 频率分布图页面的内容
     st.title("频率分布图")
@@ -52,7 +50,7 @@ def app():
         # 绘制频率分布直方图
         fig, ax = plt.subplots(figsize=(14, 4))
         ax.bar(table_fre['组段'], y, width=0.8)
-        ax.set_xlabel('分布区间')
-        ax.set_ylabel('频率/组距')
-        ax.set_title('频率分布直方图')
+        ax.set_xlabel('Distribution interval')
+        ax.set_ylabel('Frequency/Group Distance')
+        ax.set_title('Frequency distribution histogram ')
         st.pyplot(fig)
