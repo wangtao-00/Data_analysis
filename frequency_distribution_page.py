@@ -3,10 +3,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-
+st.set_page_config(page_title="绘图演示", page_icon="📈")
 
 def app():
-    st.set_page_config(page_title="绘图演示", page_icon="📈")
+
     # 频率分布图页面的内容
     st.title("频率分布图")
     with st.container():
