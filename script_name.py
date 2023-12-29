@@ -1,36 +1,31 @@
-# -*- coding: utf-8 -*-
-# @Time : 2023/12/29 14:13
-# @Author : wangtao
-# @Email : wngtaow@outlook.com
-# @File :script_name.py
-
-
 import streamlit as st
-import datetime
+import leancloud
+from datetime import datetime
 
-def save_punch_card(name, time):
-    """将打卡记录保存到文件"""
-    with open("punch_card_records.txt", "a") as file:
-        file.write(f"{name} - {time}\n")
+# LeanCloud 初始化
+leancloud.init("ivmG8Co42lcMuP7nBqtB7dl6-gzGzoHsz", "zbhFWSdaoMsSMTXw3E03ib3H")
 
-# 设置网页标题
+# 打卡数据存储类
+class PunchCard(leancloud.Object):
+    pass
+
 def app():
+    # Streamlit 应用界面
     st.title('在线打卡系统')
 
-    # 创建一个简单的表单
-    with st.form("punch_card_form"):
-        name = st.text_input("请输入你的姓名")
-        submit_button = st.form_submit_button("打卡")
+    with st.form("my_form"):
+        username = st.text_input("用户名")
+        submitted = st.form_submit_button("打卡")
 
-    if submit_button:
-        current_time = datetime.datetime.now()
-        save_punch_card(name, current_time)
-        st.write(f"{name}，你已于 {current_time} 成功打卡！")
+        if submitted:
+            current_time = datetime.now()
+            try:
+                punch_card = PunchCard()
+                punch_card.set('username', username)
+                punch_card.set('time', current_time)
+                punch_card.save()
+                st.success("打卡成功！")
+            except Exception as e:
+                st.error("打卡失败：" + str(e))
 
-    # 显示打卡记录
-    st.subheader("打卡记录")
-    try:
-        with open("punch_card_records.txt", "r") as file:
-            st.text(file.read())
-    except FileNotFoundError:
-        st.write("还没有任何打卡记录。")
+    
