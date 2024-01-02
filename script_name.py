@@ -89,21 +89,8 @@ def app():
                 lc_file = file_record.get('file')
                 file_name = lc_file.name
                 file_url = lc_file.url
-                last_update_time = file_record.get('update_time')
-                # 检查文件是否被修改
-                if 'file_times' not in st.session_state:
-                    st.session_state['file_times'] = {}
-
-                if file_name in st.session_state['file_times']:
-                    if st.session_state['file_times'][file_name] != last_update_time:
-                        st.warning(f"文件 '{file_name}' 已被修改.")
-                        st.session_state['file_times'][file_name] = last_update_time
-                else:
-                    st.session_state['file_times'][file_name] = last_update_time
-
                 st.write(f"文件：{file_name}")
                 st.markdown(f"[下载]({file_url})", unsafe_allow_html=True)
         except Exception as e:
             st.error(f"加载文件列表失败：{e}")
-
 
