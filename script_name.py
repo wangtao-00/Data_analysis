@@ -79,7 +79,7 @@ def app():
             except Exception as e:
                 st.error(f"文件上传失败：{e}")
 
-        # 显示学生上传的文件
+        # 显示学生上传的文件的代码段
         st.subheader("已上传的文件")
         try:
             query = UserFile.query
@@ -90,7 +90,7 @@ def app():
                 file_name = lc_file.name
                 file_url = lc_file.url
                 st.write(f"文件：{file_name}")
-                st.markdown(f"[下载]({file_url})", unsafe_allow_html=True)
+                st.download_button(label="下载", url=file_url, file_name=file_name)
         except Exception as e:
             st.error(f"加载文件列表失败：{e}")
 
