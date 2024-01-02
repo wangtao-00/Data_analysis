@@ -89,7 +89,7 @@ def app():
                 lc_file = file_record.get('file')
                 file_name = lc_file.name
                 file_url = lc_file.url
-                download_link = f'<a href="{file_url}" target="_blank">下载 {file_name}</a>'
+                download_link = f'<a href="{file_url}" download="{file_name}">下载 {file_name}</a>'
                 st.markdown(download_link, unsafe_allow_html=True)
         except Exception as e:
             st.error(f"加载文件列表失败：{e}")
