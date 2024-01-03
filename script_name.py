@@ -85,7 +85,7 @@ def app():
     st.markdown("""
         <style>
         .vertical-line {
-            border-left: 3px solid #445175;
+            border-left: 2px solid  #270300;
             height: 100%;
             position: absolute;
             left: 50%;
