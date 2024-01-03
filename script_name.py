@@ -55,7 +55,7 @@ def app():
     # st.image("path_to_logo.png", width=100)
     st.title('学生文件上传系统')
     # 创建两列布局
-    col1, col2 = st.beta_columns(2)
+    col1, col2 = st.columns(2)
     
     # 用户注册与登录
     with col1:
