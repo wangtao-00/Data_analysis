@@ -63,6 +63,7 @@ def app():
         choice = st.radio("选择操作", menu)
     
         if choice == "注册":
+            st.session_state['logged_in'] = False
             new_username = st.text_input("用户名", key='new_username')
             new_password = st.text_input("密码", type='password', key='new_password')
             if st.button("注册"):
@@ -70,6 +71,7 @@ def app():
                 st.success("注册成功！")
     
         elif choice == "登录":
+             st.session_state['logged_in'] = False
             username = st.text_input("用户名", key='username')
             password = st.text_input("密码", type='password', key='password')
             if st.button("登录"):
