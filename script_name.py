@@ -106,7 +106,7 @@ def app():
             # 第二行：作业1的内容
             with st.container():
                 st.subheader("作业1")
-                col21, col22, col23 = st.beta_columns(3)
+                col21, col22, col23 = st.columns(3)
     
                 # 第一列：上传文件
                 with col21:
