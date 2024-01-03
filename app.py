@@ -15,7 +15,7 @@ PAGES = {
 }
 # 侧边栏
 st.sidebar.title('导航')
-selection = st.sidebar.button("去往", list(PAGES.keys()))
+selection = st.sidebar.radio("去往", list(PAGES.keys()))
 
 page = PAGES[selection]
 page.app()
