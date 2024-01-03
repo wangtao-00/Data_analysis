@@ -54,7 +54,7 @@ def app():
     # 页眉
     st.title('🌍 学生文件上传系统')
     # 创建两列布局
-    col1, col3,col2 = st.columns([1.2, 0.1, 2])
+    col1, col_spacer, col2 = st.columns([1.2, 0.1, 2])
     
     # 用户注册与登录
     with col1:
@@ -81,7 +81,7 @@ def app():
                 else:
                     st.error("用户名或密码错误")
     # 在两列之间添加竖线
-    with col3:
+    with col_spacer:
         st.markdown('`|`', unsafe_allow_html=True)  # 使用 Markdown 来模拟竖线
 
     # 文件上传和显示
