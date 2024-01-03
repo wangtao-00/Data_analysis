@@ -82,7 +82,19 @@ def app():
                     st.error("用户名或密码错误")
     # 在两列之间添加竖线
     with col_spacer:
-        st.markdown('`|`', unsafe_allow_html=True)  # 使用 Markdown 来模拟竖线
+        st.markdown(
+        """
+        <style>
+        .divider {
+            border-left: 2px solid  #270300;
+            height: 500px;
+        }
+        </style>
+        <div class="divider"></div>
+        """,
+        unsafe_allow_html=True
+    )
+
 
     # 文件上传和显示
     with col2:
