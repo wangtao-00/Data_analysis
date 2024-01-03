@@ -97,43 +97,61 @@ def app():
 
 
     # 文件上传和显示
-    with col2:
-        if 'logged_in' in st.session_state and st.session_state['logged_in']:
-            # st.write(f"欢迎, {st.session_state['student_name']}!")
-            welcome_message = f"<span style='color:blue; font-size:20px;'>欢迎, {st.session_state['student_name']}!</span>"
-            st.markdown(welcome_message, unsafe_allow_html=True)
-            # 文件上传逻辑
-            uploaded_file = st.file_uploader("上传文件", type=["pdf", "docx"])
-            if uploaded_file is not None:
+    with col2:  # 右侧列内容
+    if 'logged_in' in st.session_state and st.session_state['logged_in']:
+        # 第一行：显示学生信息
+        with st.container():
+            st.write(f"欢迎, {st.session_state['student_name']}!")
+
+        # 第二行：作业1的内容
+        with st.container():
+            st.subheader("作业1")
+            col21, col22, col23 = st.beta_columns(3)
+
+            # 第一列：上传文件
+            with col21:
+                uploaded_file_hw1 = st.file_uploader("上传文件", key="file_uploader_hw1", type=["pdf", "docx"])
+                if uploaded_file_hw1 is not None:
+                    try:
+                        file_data_hw1 = uploaded_file_hw1.getvalue()
+                        lc_file_hw1 = leancloud.File(uploaded_file_hw1.name, io.BytesIO(file_data_hw1))
+                        lc_file_hw1.save()
+                        
+                        # 保存文件记录
+                        user_file_hw1 = UserFile()
+                        user_file_hw1.set('username', st.session_state['student_name'])
+                        user_file_hw1.set('file', lc_file_hw1)
+                        user_file_hw1.set('homework', "hw1")
+                        user_file_hw1.set('original', True)
+                        user_file_hw1.save()
+                        st.success("文件上传成功！")
+                    except Exception as e:
+                        st.error(f"文件上传失败：{e}")
+
+            # 第二列：已上传的文件
+            with col22:
                 try:
-                    # 读取文件内容并上传
-                    file_data = uploaded_file.getvalue()
-                    lc_file = leancloud.File(uploaded_file.name, io.BytesIO(file_data))
-                    lc_file.save()
-                    # 保存文件记录
-                    user_file = UserFile()
-                    user_file.set('username', st.session_state['student_name'])
-                    user_file.set('file', lc_file)
-                    user_file.set('original', True)
-                    user_file.save()
-                    st.success("文件上传成功！")
+                    query_hw1 = UserFile.query
+                    query_hw1.equal_to('username', st.session_state['student_name'])
+                    query_hw1.equal_to('homework', "hw1")
+                    file_hw1 = query_hw1.first()
+                    if file_hw1:
+                        lc_file_hw1 = file_hw1.get('file')
+                        file_name_hw1 = lc_file_hw1.name
+                        file_url_hw1 = lc_file_hw1.url
+                        st.write(f"文件：{file_name_hw1}")
+                        st.markdown(f"[下载文件]({file_url_hw1})", unsafe_allow_html=True)
                 except Exception as e:
-                    st.error(f"文件上传失败：{e}")
-    
-            # 显示学生上传的文件的代码段
-            st.subheader("已上传的文件")
-            try:
-                query = UserFile.query
-                query.equal_to('username', st.session_state['student_name'])
-                files = query.find()
-                for file_record in files:
-                    lc_file = file_record.get('file')
-                    file_name = lc_file.name
-                    file_url = lc_file.url
-                    download_link = f'<a href="{file_url}" download="{file_name}">下载 {file_name}</a>'
-                    st.markdown(download_link, unsafe_allow_html=True)
-            except Exception as e:
-                st.error(f"加载文件列表失败：{e}")
+                    st.error("加载文件文件失败")
+
+            # 第三列：文件修改提示
+            with col23:
+                try:
+                    file_hw1 = query_hw1.first()
+                    if file_hw1 and not file_hw1.get('original'):
+                        st.warning("文件已被修改")
+                except Exception as e:
+                    st.error("检查文件状态失败")
     # 页脚
     st.markdown('<div class="footer">版权所有 &copy; 2023 学生文件上传系统</div>', unsafe_allow_html=True)
 
