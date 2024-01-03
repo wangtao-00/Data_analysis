@@ -102,48 +102,47 @@ def app():
             with st.container():
                 st.write(f"欢迎, {st.session_state['student_name']}!")
     
-            # 文件上传区域
+           # 文件上传区域
             with st.container():
-                uploaded_file_hw1 = st.file_uploader("上传文件", key="file_uploader_hw1", type=["pdf", "docx"])
-                if uploaded_file_hw1 is not None:
-                    try:
-                        file_data_hw1 = uploaded_file_hw1.getvalue()
-                        lc_file_hw1 = leancloud.File(uploaded_file_hw1.name, io.BytesIO(file_data_hw1))
-                        lc_file_hw1.save()
-                        
-                        # 保存文件记录
-                        user_file_hw1 = UserFile()
-                        user_file_hw1.set('username', st.session_state['student_name'])
-                        user_file_hw1.set('file', lc_file_hw1)
-                        user_file_hw1.set('homework', "hw1")
-                        user_file_hw1.set('original', True)
-                        user_file_hw1.save()
-                        st.success("文件上传成功！")
-                    except Exception as e:
-                        st.error(f"文件上传失败：{e}")
+                uploaded_files = st.file_uploader("上传文件", accept_multiple_files=True, key="file_uploader", type=["pdf", "docx", "doc"])
+                if uploaded_files:
+                    for uploaded_file in uploaded_files:
+                        try:
+                            file_data = uploaded_file.getvalue()
+                            lc_file = leancloud.File(uploaded_file.name, io.BytesIO(file_data))
+                            lc_file.save()
+                            
+                            # 保存文件记录
+                            user_file = UserFile()
+                            user_file.set('username', st.session_state['student_name'])
+                            user_file.set('file', lc_file)
+                            user_file.set('original', True)
+                            user_file.save()
+                            st.success(f"文件 '{uploaded_file.name}' 上传成功！")
+                        except Exception as e:
+                            st.error(f"文件 '{uploaded_file.name}'
     
             # 显示已上传的文件及下载链接
             with st.container():
                 try:
-                    query_hw1 = UserFile.query
-                    query_hw1.equal_to('username', st.session_state['student_name'])
-                    query_hw1.equal_to('homework', "hw1")
-                    files_hw1 = query_hw1.find()
-            
-                    if files_hw1:
-                        for file_hw1 in files_hw1:
-                            lc_file_hw1 = file_hw1.get('file')
-                            file_name_hw1 = lc_file_hw1.name
-                            file_url_hw1 = lc_file_hw1.url
-                            
+                    query = UserFile.query
+                    query.equal_to('username', st.session_state['student_name'])
+                    files = query.find()
+    
+                    if files:
+                        for file in files:
+                            lc_file = file.get('file')
+                            file_name = lc_file.name
+                            file_url = lc_file.url
+    
                             # 判断文件类型并生成相应的下载链接
-                            if file_name_hw1.endswith('.docx'):
-                                # 对于 Word 文档，使用 JavaScript 实现下载
-                                download_link = f'<a href="javascript:void(0);" onclick="location.href=\'{file_url_hw1}\'" download="{file_name_hw1}">下载 {file_name_hw1}</a>'
+                            if file_name.endswith('.docx') or file_name.endswith('.doc'):
+                                # 使用 JavaScript 实现 Word 文档下载
+                                download_link = f'<a href="javascript:void(0);" onclick="location.href=\'{file_url}\'" download="{file_name}">下载 {file_name}</a>'
                             else:
                                 # 对于其他类型的文件，使用普通下载链接
-                                download_link = f'<a href="{file_url_hw1}" target="_blank">下载 {file_name_hw1}</a>'
-            
+                                download_link = f'<a href="{file_url}" target="_blank">下载 {file_name}</a>'
+    
                             st.markdown(download_link, unsafe_allow_html=True)
                     else:
                         st.write("无文件")
