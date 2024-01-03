@@ -10,7 +10,7 @@ leancloud.init("ivmG8Co42lcMuP7nBqtB7dl6-gzGzoHsz", "zbhFWSdaoMsSMTXw3E03ib3H")
 def custom_css():
     st.markdown("""
         <style>
-            .main { background-color: #F5F5F5; }
+            .main { background-color: #adfadf; }
             .stButton>button { width: 100%; }
             .stTextInput>div>div>input { padding: 10px; }
             .footer { position: fixed; left: 0; bottom: 0; width: 100%; background-color: #f1f1f1; text-align: center; padding: 10px; }
@@ -85,7 +85,7 @@ def app():
     st.markdown("""
         <style>
         .vertical-line {
-            border-left: 2px solid #f0f2f6;
+            border-left: 3px solid #445175;
             height: 100%;
             position: absolute;
             left: 50%;
