@@ -138,17 +138,18 @@ def app():
                     else:
                         st.write("无文件")
                 except Exception as e:
-                    st.error("加载文件文件失败")
+                    st.error("无文件")
     
-            # 文件修改提示
-            with st.container():
-                try:
-                    if files_hw1:
-                        for file_hw1 in files_hw1:
-                            if not file_hw1.get('original'):
-                                st.warning("文件已被修改")
-                except Exception as e:
-                    st.error("检查文件状态失败")
+           # 文件修改提示
+        with st.container():
+            try:
+                file_hw1 = query_hw1.first()
+                if file_hw1 and not file_hw1.get('original'):
+                    st.warning("文件已被修改")
+                else:
+                    st.warning("未修改")
+            except Exception as e:
+                st.error("无文件")
     # 页脚
     st.markdown('<div class="footer">版权所有 &copy; 2023 学生文件上传系统</div>', unsafe_allow_html=True)
 
