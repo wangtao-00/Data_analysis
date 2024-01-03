@@ -11,7 +11,7 @@ PAGES = {
     "频率分布图": frequency_distribution_page,
     "饼状图和直方图": pie_bar_chart_page,
     "决策树":decision_tree_page,
-    "打卡":script_name,
+    "🌍 学生文件上传系统":script_name,
 }
 
 st.sidebar.title('导航')
