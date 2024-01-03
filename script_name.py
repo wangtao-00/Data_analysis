@@ -54,7 +54,7 @@ def app():
     # 页眉
     st.title('🌍 学生文件上传系统')
     # 创建两列布局
-    col1, col_spacer, col2 = st.columns([1.2, 0.1, 2])
+    col1, col_spacer, col2 = st.columns([1.8, 0.1, 2])
     
     # 用户注册与登录
     with col1:
