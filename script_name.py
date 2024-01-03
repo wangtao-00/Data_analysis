@@ -82,7 +82,7 @@ def app():
                 else:
                     st.error("用户名或密码错误")
     # 在两列之间添加竖线
-    with clo3:
+    with col3:
         st.markdown("""
             <style>
             .vertical-line {
