@@ -16,6 +16,7 @@ PAGES = {
 # 侧边栏
 # 侧边栏
 st.sidebar.title('导航')
-for page_name, page_module in PAGES.items():
-    if st.sidebar.button(page_name):
-        page_module.app()
+selection = st.sidebar.selectbox("去往", list(PAGES.keys()))
+
+page = PAGES[selection]
+page.app()
