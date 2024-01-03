@@ -52,7 +52,6 @@ def app():
     # custom_css()  # 应用自定义样式
 
     # 页眉
-    # st.image("path_to_logo.png", width=100)
     st.title('🌍 学生文件上传系统')
     # 创建两列布局
     col1, col3,col2 = st.columns([1.2, 0.1, 2])
