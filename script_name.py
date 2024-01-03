@@ -120,9 +120,8 @@ def app():
                             user_file.save()
                             st.success(f"文件 '{uploaded_file.name}' 上传成功！")
                         except Exception as e:
-                            st.error(f"文件 '{uploaded_file.name}'
+                            st.error(f"文件上传失败：{e}")
     
-            # 显示已上传的文件及下载链接
             # 显示已上传的文件及下载链接
             with st.container():
                 try:
@@ -135,9 +134,6 @@ def app():
                             lc_file = file.get('file')
                             file_name = lc_file.name
                             file_url = lc_file.url
-            
-                            # 生成下载链接
-                            # 判断文件类型并生成相应的下载链接
                             if file_name.endswith('.docx') or file_name.endswith('.doc'):
                                 # 使用 JavaScript 实现 Word 文档下载
                                 download_link = f'<a href="javascript:void(0);" onclick="location.href=\'{file_url}\'" download="{file_name}">下载 {file_name}</a>'
@@ -149,7 +145,7 @@ def app():
                         st.write("无文件")
                 except Exception as e:
                     st.error("加载文件失败")
-    
+                    
            # 文件修改提醒
             with st.container():
                 try:
