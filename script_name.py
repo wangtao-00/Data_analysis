@@ -86,7 +86,7 @@ def app():
         """
         <style>
         .divider {
-            border-left: 2px solid  #270300;
+            border-left: 1px solid  #c0c0c0;
             height: 500px;
         }
         </style>
