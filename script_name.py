@@ -6,6 +6,18 @@ import io
 # LeanCloud 初始化
 leancloud.init("ivmG8Co42lcMuP7nBqtB7dl6-gzGzoHsz", "zbhFWSdaoMsSMTXw3E03ib3H")
 
+# 自定义样式
+def custom_css():
+    st.markdown("""
+        <style>
+            .main { background-color: #F5F5F5; }
+            .stButton>button { width: 100%; }
+            .stTextInput>div>div>input { padding: 10px; }
+            .footer { position: fixed; left: 0; bottom: 0; width: 100%; background-color: #f1f1f1; text-align: center; padding: 10px; }
+        </style>
+        """, unsafe_allow_html=True)
+
+
 # 学生用户类
 class Student(leancloud.Object):
     pass
@@ -37,6 +49,12 @@ def verify_student(username, password):
 
 # 学生文件上传系统
 def app():
+    custom_css()  # 应用自定义样式
+
+    # 页眉
+    st.image("path_to_logo.png", width=100)
+    st.title('学生文件上传系统')
+    
     # 用户注册与登录
     menu = ["登录", "注册"]
     choice = st.radio("选择操作", menu)
@@ -93,4 +111,6 @@ def app():
                 st.markdown(download_link, unsafe_allow_html=True)
         except Exception as e:
             st.error(f"加载文件列表失败：{e}")
+    # 页脚
+    st.markdown('<div class="footer">版权所有 &copy; 2023 学生文件上传系统</div>', unsafe_allow_html=True)
 
