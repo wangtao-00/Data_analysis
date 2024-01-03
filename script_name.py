@@ -79,6 +79,9 @@ def app():
                     st.success('登录成功')
                     st.session_state['logged_in'] = True
                     st.session_state['student_name'] = username
+                    # 清除登录表单
+                    st.session_state['username'] = ''
+                    st.session_state['password'] = ''
                 else:
                     st.error("用户名或密码错误")
 
