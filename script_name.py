@@ -123,18 +123,20 @@ def app():
                             st.error(f"文件 '{uploaded_file.name}'
     
             # 显示已上传的文件及下载链接
+            # 显示已上传的文件及下载链接
             with st.container():
                 try:
                     query = UserFile.query
                     query.equal_to('username', st.session_state['student_name'])
                     files = query.find()
-    
+            
                     if files:
                         for file in files:
                             lc_file = file.get('file')
                             file_name = lc_file.name
                             file_url = lc_file.url
-    
+            
+                            # 生成下载链接
                             # 判断文件类型并生成相应的下载链接
                             if file_name.endswith('.docx') or file_name.endswith('.doc'):
                                 # 使用 JavaScript 实现 Word 文档下载
@@ -142,23 +144,31 @@ def app():
                             else:
                                 # 对于其他类型的文件，使用普通下载链接
                                 download_link = f'<a href="{file_url}" target="_blank">下载 {file_name}</a>'
-    
                             st.markdown(download_link, unsafe_allow_html=True)
                     else:
                         st.write("无文件")
                 except Exception as e:
                     st.error("加载文件失败")
     
-           # 文件修改提示
+           # 文件修改提醒
             with st.container():
                 try:
-                    file_hw1 = query_hw1.first()
-                    if file_hw1 and not file_hw1.get('original'):
-                        st.warning("文件已被修改")
-                    else:
-                        st.warning("未修改")
+                    modified_files = []  # 存储已被修改的文件名称
+            
+                    if files:
+                        for file in files:
+                            # 检查文件是否被修改
+                            if not file.get('original'):
+                                modified_files.append(file.get('file').name)
+            
+                        if modified_files:
+                            st.warning("以下文件已被修改：")
+                            for file_name in modified_files:
+                                st.write(f"⚠️ {file_name}")
+                        else:
+                            st.write("没有文件被修改。")
                 except Exception as e:
-                    st.error("无文件")
+                    st.error("检查文件修改状态时出错")
     # 页脚
     st.markdown('<div class="footer">版权所有 &copy; 2023 学生文件上传系统</div>', unsafe_allow_html=True)
 
