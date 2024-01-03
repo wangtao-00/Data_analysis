@@ -13,9 +13,9 @@ PAGES = {
     "决策树":decision_tree_page,
     "🌍 学生文件上传系统":script_name,
 }
-
+# 侧边栏
 st.sidebar.title('导航')
-selection = st.sidebar.radio("去往", list(PAGES.keys()))
+selection = st.sidebar.button("去往", list(PAGES.keys()))
 
 page = PAGES[selection]
 page.app()
