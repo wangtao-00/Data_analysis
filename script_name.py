@@ -81,6 +81,19 @@ def app():
                     
                 else:
                     st.error("用户名或密码错误")
+    # 在两列之间添加竖线
+    st.markdown("""
+        <style>
+        .vertical-line {
+            border-left: 2px solid #f0f2f6;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            margin-left: -1px;
+        }
+        </style>
+        <div class="vertical-line"></div>
+    """, unsafe_allow_html=True)
 
     # 文件上传和显示
     with col2:
