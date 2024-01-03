@@ -55,7 +55,7 @@ def app():
     # st.image("path_to_logo.png", width=100)
     st.title('🌍 学生文件上传系统')
     # 创建两列布局
-    col1, col2 = st.columns(2)
+    col1, col3,col2 = st.columns([1, 0.1, 2])
     
     # 用户注册与登录
     with col1:
@@ -82,18 +82,19 @@ def app():
                 else:
                     st.error("用户名或密码错误")
     # 在两列之间添加竖线
-    st.markdown("""
-        <style>
-        .vertical-line {
-            border-left: 2px solid  #270300;
-            height: 100%;
-            position: absolute;
-            left: 50%;
-            margin-left: -1px;
-        }
-        </style>
-        <div class="vertical-line"></div>
-    """, unsafe_allow_html=True)
+    with clo3:
+        st.markdown("""
+            <style>
+            .vertical-line {
+                border-left: 2px solid  #270300;
+                height: 100%;
+                position: absolute;
+                left: 50%;
+                margin-left: -1px;
+            }
+            </style>
+            <div class="vertical-line"></div>
+        """, unsafe_allow_html=True)
 
     # 文件上传和显示
     with col2:
