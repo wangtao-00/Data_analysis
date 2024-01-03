@@ -134,12 +134,7 @@ def app():
                             lc_file = file.get('file')
                             file_name = lc_file.name
                             file_url = lc_file.url
-                            if file_name.endswith('.docx') or file_name.endswith('.doc'):
-                                # 使用 JavaScript 实现 Word 文档下载
-                                download_link = f'<a href="javascript:void(0);" onclick="location.href=\'{file_url}\'" download="{file_name}">下载 {file_name}</a>'
-                            else:
-                                # 对于其他类型的文件，使用普通下载链接
-                                download_link = f'<a href="{file_url}" target="_blank">下载 {file_name}</a>'
+                            download_link = f'<a href="{file_url}" target="_blank">下载 {file_name}</a>'
                             st.markdown(download_link, unsafe_allow_html=True)
                     else:
                         st.write("无文件")
