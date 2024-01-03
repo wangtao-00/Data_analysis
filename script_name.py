@@ -49,7 +49,7 @@ def verify_student(username, password):
 
 # 学生文件上传系统
 def app():
-    custom_css()  # 应用自定义样式
+    # custom_css()  # 应用自定义样式
 
     # 页眉
     # st.image("path_to_logo.png", width=100)
