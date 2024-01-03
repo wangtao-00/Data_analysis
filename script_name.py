@@ -128,17 +128,27 @@ def app():
                     query_hw1 = UserFile.query
                     query_hw1.equal_to('username', st.session_state['student_name'])
                     query_hw1.equal_to('homework', "hw1")
-                    file_hw1 = query_hw1.first()
-                    if file_hw1:
-                        lc_file_hw1 = file_hw1.get('file')
-                        file_name_hw1 = lc_file_hw1.name
-                        file_url_hw1 = lc_file_hw1.url
-                        st.write(f"文件：{file_name_hw1}")
-                        st.markdown(f"[下载文件]({file_url_hw1})", unsafe_allow_html=True)
+                    files_hw1 = query_hw1.find()
+            
+                    if files_hw1:
+                        for file_hw1 in files_hw1:
+                            lc_file_hw1 = file_hw1.get('file')
+                            file_name_hw1 = lc_file_hw1.name
+                            file_url_hw1 = lc_file_hw1.url
+                            
+                            # 判断文件类型并生成相应的下载链接
+                            if file_name_hw1.endswith('.docx'):
+                                # 对于 Word 文档，使用 JavaScript 实现下载
+                                download_link = f'<a href="javascript:void(0);" onclick="location.href=\'{file_url_hw1}\'" download="{file_name_hw1}">下载 {file_name_hw1}</a>'
+                            else:
+                                # 对于其他类型的文件，使用普通下载链接
+                                download_link = f'<a href="{file_url_hw1}" target="_blank">下载 {file_name_hw1}</a>'
+            
+                            st.markdown(download_link, unsafe_allow_html=True)
                     else:
                         st.write("无文件")
                 except Exception as e:
-                    st.error("无文件")
+                    st.error("加载文件失败")
     
            # 文件修改提示
             with st.container():
