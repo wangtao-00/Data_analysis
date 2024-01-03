@@ -52,7 +52,7 @@ def app():
     custom_css()  # 应用自定义样式
 
     # 页眉
-    st.image("path_to_logo.png", width=100)
+    # st.image("path_to_logo.png", width=100)
     st.title('学生文件上传系统')
     
     # 用户注册与登录
