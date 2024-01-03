@@ -88,6 +88,7 @@ def app():
     # 文件上传和显示
     with col2:
         if 'logged_in' in st.session_state and st.session_state['logged_in']:
+            st.write(f"欢迎, {st.session_state['student_name']}!")
             # 文件上传逻辑
             uploaded_file = st.file_uploader("上传文件", type=["pdf", "docx"])
             if uploaded_file is not None:
