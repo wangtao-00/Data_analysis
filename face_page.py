@@ -187,10 +187,12 @@ def app():
 
     with st.form("my_form"):
         username = st.text_input("用户名")
+        image_data = st.camera_input("拍摄照片")
         submitted = st.form_submit_button("打卡")
 
         if submitted:
-            img1_bytes = capture_image_from_camera()
+            # img1_bytes = capture_image_from_camera()
+            img1_bytes = image_data.getvalue()
             if img1_bytes:
                 # 从 LeanCloud 获取比对图像路径
 
