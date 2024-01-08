@@ -4,7 +4,9 @@ import hashlib
 import io
 
 # LeanCloud 初始化
-leancloud.init("ivmG8Co42lcMuP7nBqtB7dl6-gzGzoHsz", "zbhFWSdaoMsSMTXw3E03ib3H")
+
+
+leancloud.init(st.secrets["ID"], st.secrets["key"])
 
 
 # 自定义样式
