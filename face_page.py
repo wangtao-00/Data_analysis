@@ -88,6 +88,7 @@ def gen_body(appid, img1_data, img2_url, server_id):
     # with open(img1_path, 'rb') as f:
     #     img1_data = f.read()
     # with open(img2_path, 'rb') as f:
+    img1_data=img1_data.getbuffer()
     response = requests.get(img2_url)
     if response.status_code != 200:
         raise Exception("无法下载图像")
@@ -192,7 +193,9 @@ def app():
 
         if submitted:
             # img1_bytes = capture_image_from_camera()
-            # img1_bytes = image_data.getvalue()
+            # if image_data is not None:
+                # img1_bytes = img1_bytes.getvalue()
+            
             if img1_bytes:
                 # 从 LeanCloud 获取比对图像路径
 
