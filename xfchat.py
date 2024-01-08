@@ -3,9 +3,9 @@ from streamlit_chat import message
 
 import SparkApi
 # 设置 API 信息
-appid = st.secrets(["appid"])
-api_secret = st.secrets(["api_secret"])
-api_key = st.secrets(["api_key"])
+appid = st.secrets["appid"]
+api_secret = st.secrets["api_secret"]
+api_key = st.secrets["api_key"]
 domain = "generalv3"
 Spark_url = "ws://spark-api.xf-yun.com/v3.1/chat"
 
