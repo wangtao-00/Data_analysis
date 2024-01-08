@@ -11,5 +11,7 @@ streamlit-drawable-canvas==0.9.3
 protobuf==3.20.3
 leancloud==2.9.12
 websocket-client==0.58.0
+opencv-python==4.8.1.78
+
 
 
