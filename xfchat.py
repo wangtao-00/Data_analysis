@@ -9,9 +9,7 @@ api_key = st.secrets["api_key"]
 domain = "generalv3"
 Spark_url = "ws://spark-api.xf-yun.com/v3.1/chat"
 
-# 初始化 Streamlit 状态
-if 'conversation' not in st.session_state:
-    st.session_state['conversation'] = []
+
 
 def add_to_conversation(role, content):
     st.session_state['conversation'].append({"role": role, "content": content})
@@ -41,6 +39,11 @@ def add_bg_from_url():
 
 
 def app():
+    # 初始化 Streamlit 状态
+    if 'conversation' not in st.session_state:
+        st.session_state['conversation'] = []
+
+
     # 调用函数应用背景图
     add_bg_from_url()
     st.title("智能问答助手")
