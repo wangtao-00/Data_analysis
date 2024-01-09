@@ -206,7 +206,7 @@ def app():
                     # print(response)
                     response_dict = json.loads(response)
                     score = response_dict.get("score", 0)
-                    if score > 0.7:
+                    if score > 0.8:
                         # 记录打卡时间
                         try:
                             store_image_in_database(username, img1_bytes)
