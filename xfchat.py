@@ -45,7 +45,7 @@ def app():
 
 
     # 调用函数应用背景图
-    add_bg_from_url()
+    # add_bg_from_url()
     st.title("智能问答助手")
 
     # 创建两栏布局
