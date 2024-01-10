@@ -6,6 +6,8 @@ import decision_tree_page
 import script_name
 import xfchat
 import face_page
+import Classroom_system
+
 st.set_page_config(page_title="数据分析", page_icon=":tiger:", layout="wide")
 
 PAGES = {
@@ -16,6 +18,7 @@ PAGES = {
     "🌍 学生文件上传系统":script_name,
     "智能问答机器人":xfchat,
     "人脸打卡":face_page,
+    "教室在线选定":Classroom_system,
 }
 # 侧边栏
 # 侧边栏
