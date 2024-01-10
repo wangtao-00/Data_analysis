@@ -15,8 +15,7 @@ class Booking(Object):
 
 # 初始化LeanCloud（请替换为您的应用ID和Key）
 def init_leancloud():
-    leancloud.init("W1cchxG7EMCEJoS3I15MvDYG-gzGzoHsz", "LfXa5qEGUNNQpKj17Vb39MTd")
-    # leancloud.initialize("<YOUR_APP_ID>", "<YOUR_APP_KEY>")
+    leancloud.init(st.secrets["ID"], st.secrets["key"])
 
 
 # 生成未来三天的日期列表
